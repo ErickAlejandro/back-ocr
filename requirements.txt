@@ -1,4 +1,5 @@
 gunicorn==20.1.0
+numpy==1.22.3
 opencv-python==4.5.5.64
 packaging==21.3
 Pillow==9.1.0
