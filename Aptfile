@@ -1,6 +1,7 @@
-tesseract-ocr
-tesseract-ocr-eng
+libfontconfig1
+libgl1
+libice6
 libsm6
 libxrender1
-libfontconfig1
-libice6
+tesseract-ocr
+tesseract-ocr-eng
