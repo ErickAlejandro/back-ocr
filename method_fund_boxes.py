@@ -24,18 +24,20 @@ def ocr(bbox):
 
 def convert_img_to_array(img):
     # Toma la imagen desde el webservice
-    print(img.shape)
+
     model = torch.hub.load('ultralytics/yolov5', 'custom',
                            path='best.pt', device='cpu')
     results = model(img)
     results = results.pandas().xyxy[0]
     
     m = results.to_numpy() #Transformar la matrix panda a numpy
+    m = m[m[:, 5].argsort()]
     print(m)
-    
     information = []
 
     y, x = img.shape[:2]
+    shape = [x, y]
+    print('Tamaño de la imagen', str(x), str(y))
 
     for i in range(len(m)):
         xmin = m[i, 0]
@@ -56,8 +58,8 @@ def convert_img_to_array(img):
 
         information.append(cut)
 
-    print('Informacion general\n' + str(information))
-
+    print('Informacion general\n')
+    return information, shape, m
 
 if __name__ == "__main__":
     convert_img_to_array()
